@@ -84,3 +84,5 @@ function game() {
     console.log("Tie");
   }
 }
+
+game();
