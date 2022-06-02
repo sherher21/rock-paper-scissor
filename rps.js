@@ -1,71 +1,75 @@
+let playerScore = 0;
+let computerScore = 0;
+
 function computerPlay() {
-  let play = ["Rock", "Paper", "Scissor"];
+  let play = ["rock", "paper", "scissor"];
   return play[Math.floor(Math.random() * 3)];
 }
 
 function playRound(playerSelection, computerSelection) {
-  playerSelection = playerSelection.toLowerCase();
-  computerSelection = computerSelection.toLowerCase();
-  let result;
+  //playerSelection = playerSelection.toLowerCase();
+  //computerSelection = computerSelection.toLowerCase();
+  let result = document.querySelector('.call-out');
   let point = 0;
+
   if (playerSelection === "rock") {
     switch (computerSelection) {
       case "rock":
-        result = "Tie! Rock does not beat Rock";
+        result.textContent = "Tie! Rock does not beat Rock";
         break;
       case "paper":
-        result = "You Lose! Paper beats Rock";
+        result.textContent = "You Lose! Paper beats Rock";
         point--;
         break;
       case "scissor":
-        result = "You Win! Rock beats Scissor";
+        result.textContent = "You Win! Rock beats Scissor";
         point++;
         break;
       default:
-        result = "Error!";
+        result.textContent = "Error1!";
         break;
     }
   }
   if (playerSelection === "paper") {
     switch (computerSelection) {
       case "rock":
-        result = "You Win! Paper beats Rock";
+        result.textContent = "You Win! Paper beats Rock";
         point++;
         break;
       case "paper":
-        result = "Tie! Paper does not beat Paper";
+        result.textContent = "Tie! Paper does not beat Paper";
         break;
       case "scissor":
-        result = "You Lose! Scissor beats Paper";
+        result.textContent = "You Lose! Scissor beats Paper";
         point--;
         break;
       default:
-        result = "Error!";
+        result.textContent = "Error2!";
         break;
     }
   }
   if (playerSelection === "scissor") {
     switch (computerSelection) {
       case "rock":
-        result = "You Lose! Rock beats Scissor";
+        result.textContent = "You Lose! Rock beats Scissor";
         point--;
         break;
       case "paper":
-        result = "You Win! Scissor beats Paper";
+        result.textContent = "You Win! Scissor beats Paper";
         point++;
         break;
       case "scissor":
-        result = "Tie! Scissor does not beat Scissor";
+        result.textContent = "Tie! Scissor does not beat Scissor";
         break;
       default:
-        result = "Error!";
+        result.textContent = "Error3!";
         break;
     }
   }
-  console.log(result);
+  console.log(result.textContent);
   return point;
 }
-
+/*
 function game() {
   let playerPlay;
   let score = 0;
@@ -84,5 +88,50 @@ function game() {
     console.log("Tie");
   }
 }
+*/
 
-game();
+function declareWinner() {
+  let callOut = document.querySelector('.call-out');
+  if (playerScore > computerScore) {
+    callOut.textContent = "You Win!";
+  }
+  else {
+    callOut.textContent = "You Lose!";
+  }
+}
+
+const buttons = document.querySelectorAll('button');
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+
+    let pScore = document.querySelector('.player');
+    let cScore = document.querySelector('.computer');
+    
+    if (playerScore > 4 || computerScore > 4) {
+      playerScore = 0;
+      computerScore = 0;
+    }
+
+    let playerSelection = button.id;
+    let computerSelection = computerPlay();
+    let score = playRound(playerSelection, computerSelection);
+    if (score > 0) {
+      playerScore++;
+    }
+    else if (score < 0) {
+      computerScore++;
+    }
+
+    pScore.textContent = playerScore;
+    cScore.textContent = computerScore;
+
+    if (playerScore === 5 || computerScore === 5) {
+      declareWinner();
+    }
+
+  });
+});
+
+
+
+//game();

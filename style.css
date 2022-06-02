@@ -1,0 +1,35 @@
+h1 {
+  display:flex;
+  justify-content: center;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  padding: 50px;
+}
+
+.score {
+  display:flex;
+  justify-content: center;
+  gap: 200px;
+  padding: 50px;
+  font-size: 38px;
+
+}
+
+button {
+  font-size: 20px;
+}
+
+.call-out {
+  display:flex;
+  font-size: 48px;
+  background-color:aqua;
+  height: 50px;
+  width: 800px;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
